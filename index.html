@@ -8,6 +8,11 @@
   <title>TODO App</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+  <style>
+    .text-dec-line-through{
+      text-decoration: line-through;
+    }
+  </style>
 </head>
 
 <body>
@@ -123,25 +128,25 @@
             <article class="panel">
               <div class="tabs is-boxed">
                 <ul>
-                  <li class="is-active">
+                  <li class="is-current">
                     <a>
                       <span class="icon is-small"><i class="fas fa-clipboard-list" aria-hidden="true"></i></span>
                       <span>Current</span>
                     </a>
                   </li>
-                  <li>
+                  <li class="is-completed">
                     <a>
                       <span class="icon is-small"><i class="fas fa-calendar-times" aria-hidden="true"></i></span>
                       <span>Completed</span>
                     </a>
                   </li>
-                  <li>
+                  <li class="is-upcoming">
                     <a>
                       <span class="icon is-small"><i class="fas fa-calendar-day" aria-hidden="true"></i></span>
                       <span>Upcoming</span>
                     </a>
                   </li>
-                  <li>
+                  <li class="is-active is-all">
                     <a>
                       <span class="icon is-small"><i class="fas fa-calendar" aria-hidden="true"></i></span>
                       <span>All</span>
@@ -158,23 +163,23 @@
                 </p>
               </div>
               <a class="panel-block is-active">
-                  <input type="checkbox">
-                  Make Bulma great again
+                  <input type="checkbox" class="checkbox">
+                   Make Bulma great again
               </a>
-              <a class="panel-block is-active">
-                  <input type="checkbox">
+              <a class="panel-block is-active text-dec-line-through">
+                  <input type="checkbox" checked class="checkbox">
                   Add some more features
               </a>
               <a class="panel-block is-active">
-                  <input type="checkbox">
+                  <input type="checkbox" class="checkbox">
                   Make a github account
               </a>
-              <a class="panel-block is-active">
-                  <input type="checkbox">
+              <a class="panel-block is-active text-dec-line-through">
+                  <input type="checkbox" checked class="checkbox">
                   Learn how to use github
               </a>
               <a class="panel-block is-active">
-                  <input type="checkbox">
+                  <input type="checkbox" class="checkbox">
                   add a .gitignore file
               </a>
             </article>
@@ -220,6 +225,28 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+     $(".tabs ul li").click(function(){
+        $(".tabs ul li").removeClass("is-active");
+        $(this).addClass("is-active");
+      });
+      $(".checkbox").change(function(){
+        $(this).parent(".panel-block").toggleClass("text-dec-line-through");
+      });
+      $(".is-current").click(function(){
+        $(".panel-block").show();
+        $(".text-dec-line-through").hide();
+      });
+      $(".is-completed").click(function(){
+        $(".panel-block").show();
+        $(".panel-block").not(".text-dec-line-through").hide();
+      });
+      $(".is-all, .is-upcoming").click(function(){
+        $(".panel-block").show();
+      });
+  </script>
 </body>
 
 </html>
