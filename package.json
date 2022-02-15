@@ -1,0 +1,19 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "<center> <img src=\"assets/images/Rajesh-pic.jpg\" alt=\"Rajesh image\" width=\"800\"/> </center>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajeshswarna123/TODO-App.git"
+  },
+  "author": "Rajesh Swarna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajeshswarna123/TODO-App/issues"
+  },
+  "homepage": "https://github.com/rajeshswarna123/TODO-App#readme"
+}
