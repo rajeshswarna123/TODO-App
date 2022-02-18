@@ -2,10 +2,11 @@
   "name": "todo-app",
   "version": "1.0.0",
   "description": "<center> <img src=\"assets/images/Rajesh-pic.jpg\" alt=\"Rajesh image\" width=\"800\"/> </center>",
+  "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rajeshswarna123/TODO-App.git"
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/rajeshswarna123/TODO-App/issues"
   },
-  "homepage": "https://github.com/rajeshswarna123/TODO-App#readme"
+  "homepage": "https://github.com/rajeshswarna123/TODO-App#readme",
+  "dependencies": {
+    "express": "~4.17.3"
+  }
 }
