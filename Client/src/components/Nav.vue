@@ -9,10 +9,10 @@ import LoginBadge from './LoginBadge.vue';
 <template>
     <nav class="navbar is-primary">
       <div class="navbar-brand">
-        <a class="navbar-item" href="/">
+        <router-link class="navbar-item" to="/">
           <img src="https://bulma.io/images/bulma-logo-white.png" alt="Bulma: a modern CSS framework based on Flexbox"
             width="112" height="28">
-        </a>
+        </router-link>
         <div class="navbar-burger" data-target="navbarExampleTransparentExample">
           <span></span>
           <span></span>
@@ -21,9 +21,9 @@ import LoginBadge from './LoginBadge.vue';
       </div>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="/home">
+          <router-link class="navbar-item" to="/home">
             Home
-          </a>
+          </router-link>
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
