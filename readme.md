@@ -1,8 +1,8 @@
 # <center> RAJESH SWARNA </center>
 
-<center> <img src="assets/images/Rajesh-pic.jpg" alt="Rajesh image" width="800"/> </center>
+<center> <img src="assets/images/Rajesh.JPG" alt="Rajesh image" width="800"/> </center>
 
-<!-- ![Image!](/assets/images/Rajesh-pic.jpg "Rajesh Image")  -->
+<!-- ![Image!](/assets/images/Rajesh.jpg "Rajesh Image")  -->
 
 <br >
 
