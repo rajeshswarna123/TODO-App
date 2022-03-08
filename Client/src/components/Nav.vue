@@ -18,7 +18,7 @@ import { ref } from 'vue';
       </div>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item" href="https://bulma.io/">
+          <a class="navbar-item" href="/home">
             Home
           </a>
           <div class="navbar-item has-dropdown is-hoverable">
