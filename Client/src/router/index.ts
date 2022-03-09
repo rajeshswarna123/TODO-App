@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, Router, RouteRecord, RouteRecordRaw } f
 import Home from '../pages/Home.vue'
 import Login from '../pages/Login.vue'
 import Signup from '../pages/Signup.vue'
+import session from "../models/session"
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -24,5 +25,12 @@ const router : Router = createRouter({
   linkActiveClass: "is-active",
 })
 
+router.beforeEach((to, form) =>{
+  if(['/home'].includes(to.path)){
+      if(!session.user){
+          router.push('/login');
+      }
+  }
+})
 
 export default router;

@@ -19,7 +19,7 @@ export async function Login(handle: string, password: string) {
     }
 
     session.user = user;
-    router.push('/messages');
+    router.push('/home');
 }
 
 export function Logout() {
