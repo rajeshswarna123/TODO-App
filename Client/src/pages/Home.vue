@@ -19,9 +19,9 @@ import session from '../models/session'
 
 const currentTab = ref( 'All' );
 const allTasks = usetasks();
-const newTask=ref('bjbh');
+const newTask=ref();
 const dueDate=ref();
-const assignedTo=ref('');
+const assignedTo=ref();
 
 function submitForm(e){
   allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
@@ -112,16 +112,15 @@ function submitForm(e){
                 <a class="panel-block columns" v-for="(task,i) in allTasks.tasks" :class="{'text-dec-line-through' : task.isCompleted==true}" v-show="(((currentTab=='All') || (currentTab=='Upcoming') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)) && ((task.isOwned == session.user.id) || (task.assignedTo == session.user.id)))">
                       <div class="column is-three-quarter">
                         <input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=session.user?.id">
-                        {{task.message}}
                         <br />
                         {{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}
                       </div>
-                      <div class="select column is-one-quarter" v-if="task.isOwned==session.user.id">
-                        <select v-model="task.assignedTo">
+                      <div class="select column is-one-quarter" v-if="task.isOwned==session.user?.id">
+                        <select v-model="task.assignedTo" class="select">
                           <option v-for="user in users.list" :value="user.id">{{user.handle}}</option>
                         </select>
                       </div>
-                    <div v-if="task.isOwned!=session.user.id" class="column is-one-quarter">
+                    <div v-if="task.isOwned!=session.user?.id" class="column is-one-quarter">
                       {{users.list.find(u => u.id === task.assignedTo).handle}}
                     </div>
                 </a>
