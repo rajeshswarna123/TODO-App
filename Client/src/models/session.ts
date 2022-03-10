@@ -24,5 +24,6 @@ export async function Login(handle: string, password: string) {
 
 export function Logout() {
     session.user = null;
+    router.push('/login');
 }
 export default session;

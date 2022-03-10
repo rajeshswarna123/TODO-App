@@ -1,20 +1,37 @@
 
 <script setup>
 import { ref } from 'vue';
+import moment from 'moment';
+
+import { usetasks } from '../models/task'
+import * as users from "../models/user";
+import session from '../models/session'
+
+// export default{
+//   data(){
+//     return {
+//       newTask: 'hgvhg',
+//       dueDate: '',
+//       assignedTo:''
+//     }
+//   }
+// }
 
 const currentTab = ref( 'All' );
-const tasks= ref([
-                        { isCompleted: false, message: 'Make Bulma great again' },
-                        { isCompleted: true, message: 'Add some more features' },
-                        { isCompleted: false, message: 'Make a github account' },
-                        { isCompleted: true, message: 'Learn how to use github' },
-                        { isCompleted: false, message: 'add a .gitignore file' },
-                    ])
+const allTasks = usetasks();
+const newTask=ref('bjbh');
+const dueDate=ref();
+const assignedTo=ref('');
+
+function submitForm(e){
+  allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
+   console.log(newTask);
+}
 
 </script>
 <template>
        <div class="section">
-      <div class="container">
+       <div class="container">
         <div class="columns">
           <div class="column is-3">
             <div class="card">
@@ -74,16 +91,39 @@ const tasks= ref([
                   </ul>
                 </div>
                 <div class="panel-block">
+                  <form @submit.prevent="submitForm">
                   <p class="control has-icons-left">
-                    <input class="input is-primary" type="text" placeholder="New Task">
+                    <input class="input is-primary" type="text" placeholder="New Task" v-model="newTask">
+                    {{newTask}}
                     <span class="icon is-left">
                       <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                     </span>
                   </p>
+                  <div>
+                    <input type="date" class="input" v-model="dueDate"/>
+                     <select v-model="assignedTo">
+                      <option disabled selected>Assign to</option>
+                      <option v-for="user in users.list" :value="user.id">{{user.handle}}</option>
+                    </select>
+                    <button  type="submit" class="button">Create</button>
+                  </div>
+                  </form>
                 </div>
-                <a class="panel-block" v-for="(task,i) in tasks" :class="{'text-dec-line-through' : task.isCompleted==true}" v-show="(currentTab=='All') || (currentTab=='Upcoming') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)">
-                    <input type="checkbox" class="checkbox" v-model="task.isCompleted">
-                     {{task.message}}
+                <a class="panel-block columns" v-for="(task,i) in allTasks.tasks" :class="{'text-dec-line-through' : task.isCompleted==true}" v-show="(((currentTab=='All') || (currentTab=='Upcoming') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)) && ((task.isOwned == session.user.id) || (task.assignedTo == session.user.id)))">
+                      <div class="column is-three-quarter">
+                        <input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=session.user.id">
+                        {{task.message}}
+                        <br />
+                        {{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}
+                      </div>
+                      <div class="select column is-one-quarter" v-if="task.isOwned==session.user.id">
+                        <select v-model="task.assignedTo">
+                          <option v-for="user in users.list" :value="user.id">{{user.handle}}</option>
+                        </select>
+                      </div>
+                    <div v-if="task.isOwned!=session.user.id" class="column is-one-quarter">
+                      {{users.list.find(u => u.id === task.assignedTo).handle}}
+                    </div>
                 </a>
               </article>
           </div>
