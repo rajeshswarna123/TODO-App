@@ -2,6 +2,7 @@ import { reactive } from "vue";
 
 import router from "../router";
 import * as users from "../models/user";
+import { lang } from "moment";
 
 
 const session = reactive({
@@ -19,6 +20,22 @@ export async function Login(handle: string, password: string) {
     }
 
     session.user = user;
+    router.push('/home');
+}
+
+export async function Signup(newUser: users.User) {
+    const newUserId = Math.max(...users.list.map(_=>_.id))+1;
+    users.list.push({
+    email: newUser.email,
+    firstName: newUser.firstName,
+    lastName: newUser.lastName,
+    password: newUser.password,
+    handle: newUser.handle,
+    id: newUserId,
+    pic: '',
+    });
+    
+    session.user = users.list.find(_=>_.id==newUserId);
     router.push('/home');
 }
 

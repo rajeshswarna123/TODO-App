@@ -111,7 +111,7 @@ function submitForm(e){
                 </div>
                 <a class="panel-block columns" v-for="(task,i) in allTasks.tasks" :class="{'text-dec-line-through' : task.isCompleted==true}" v-show="(((currentTab=='All') || (currentTab=='Upcoming') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)) && ((task.isOwned == session.user.id) || (task.assignedTo == session.user.id)))">
                       <div class="column is-three-quarter">
-                        <input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=session.user.id">
+                        <input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=session.user?.id">
                         {{task.message}}
                         <br />
                         {{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}

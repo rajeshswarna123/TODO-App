@@ -31,6 +31,11 @@ router.beforeEach((to, form) =>{
           router.push('/login');
       }
   }
+  else if(['/login', '/signup'].includes(to.path)){
+    if(session.user){
+        router.push('/home');
+    }
+}
 })
 
 export default router;
