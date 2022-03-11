@@ -35,7 +35,7 @@ export async function Signup(newUser: users.User) {
     pic: '',
     });
     
-    session.user = users.list.find(_=>_.id==newUserId);
+    session.user = users.list.find(_=>_.id==newUserId)||null;
     router.push('/home');
 }
 

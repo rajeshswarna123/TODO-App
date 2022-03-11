@@ -27,7 +27,7 @@ function login()
                         <form>
                             <div class="field">
                                 <div class="control">
-                                    <input class="input is-large" placeholder="Your Email" autofocus=""  v-model="username" />
+                                    <input class="input is-large" placeholder="Your Email"  v-model="username" />
                                 </div>
                             </div>
 
