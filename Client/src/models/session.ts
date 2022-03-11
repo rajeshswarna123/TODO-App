@@ -2,7 +2,6 @@ import { reactive } from "vue";
 
 import router from "../router";
 import * as users from "../models/user";
-import { lang } from "moment";
 
 
 const session = reactive({
@@ -43,4 +42,5 @@ export function Logout() {
     session.user = null;
     router.push('/login');
 }
+
 export default session;
