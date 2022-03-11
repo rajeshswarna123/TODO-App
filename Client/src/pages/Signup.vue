@@ -1,11 +1,17 @@
 <script setup lang="ts">
 
+import { ref } from "vue-demi";
 import { Login, Signup } from "../models/session"
 import {User} from "../models/user";
 
 
 function signup()
 {
+    const firstName= ref();
+    const lastName= ref();
+    const username= ref();
+    const password= ref();
+    const email= ref();
     const user: User={
         firstName: firstName.value,
         lastName: lastName.value,
