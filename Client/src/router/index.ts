@@ -9,7 +9,7 @@ import session from "../models/session"
 // Each route should map to a component.
 // We'll talk about nested routes later.
 const routes: RouteRecordRaw[] = [
-  { path: '/home', component: Home },
+  { path: '/tasks', component: Home },
   { path: '/signup', component: Signup },
   { path: '/login', component: Login },
 //   { path: '/messages', component: () => import("../pages/Wall.vue") },
@@ -26,14 +26,14 @@ const router : Router = createRouter({
 })
 
 router.beforeEach((to, form) =>{
-  if(['/home'].includes(to.path)){
+  if(['/tasks','/'].includes(to.path)){
       if(!session.user){
           router.push('/login');
       }
   }
   else if(['/login', '/signup'].includes(to.path)){
     if(session.user){
-        router.push('/home');
+        router.push('/tasks');
     }
 }
 })
