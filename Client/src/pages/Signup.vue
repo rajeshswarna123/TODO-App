@@ -29,52 +29,27 @@ function signup()
 <template>
      <div class="section">
 
-        <div class="hero-body">
-            <div class="container has-text-centered">
-                <div class="column is-4 is-offset-4">
-                    <h3 class="title has-text-black">Signup</h3>
-                    <hr class="login-hr">
-                    <p class="subtitle has-text-black">Please Signup to proceed.</p>
-                    <div class="box">
-                        <form @submit.prevent="signup">
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" placeholder="First Name"  v-model="firstName" />
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" placeholder="Last Name"  v-model="lastName" />
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" placeholder="User Name"  v-model="username" />
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" placeholder="Email"  v-model="email" />
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <input class="input is-large" type="password" placeholder="Password" v-model="password" />
-                                </div>
-                            </div>
-                            <button class="button is-block is-info is-large is-fullwidth"  >Sign Up <i class="fa fa-sign-in" aria-hidden="true"></i></button>
-                        </form>
-                    </div>
-                    <p class="has-text-grey">
-                        <router-link to="/login">Log In</router-link> 
-                    </p>
+        <div class="page">
+            <form class="form" @submit.prevent="signup">
+                <div class="form__container">
+                <div class="logo"><img class="logo__pic" src= "../../src/assets/images/fingerprint.svg" width="45"></div>
+                <div class="fieldset">
+                    <div class="field"><input class="input" type="text" placeholder="First Name" required v-model="firstName"></div>
+                    <div class="field"><input class="input" type="text" placeholder="Last Name" required v-model="lastName"></div>
+                    <div class="field"><input class="input" type="text" placeholder="User Name" required v-model="username"></div>
+                    <div class="field"><input class="input" type="text" placeholder="Email" required v-model="email"></div>
+                    <div class="field"><input class="input" type="password" placeholder="Password" required v-model="password"></div>
+                </div><button class="btn">Sign Up</button>
+                <div class="text">Can’t remember your password? <a href="#">Recover it</a>.</div>
                 </div>
-            </div>
+                <div class="form__footer">Already have an account? <router-link to="/signup">Log In</router-link></div>
+            </form>
         </div>
     </div>
     
 </template>
 
 <style scoped>
+@import url('../../src/assets/styles/form.scss');
 
 </style>
