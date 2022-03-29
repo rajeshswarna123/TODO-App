@@ -33,7 +33,7 @@ jobs:
       run: |
           mkdir -p dist/server/public/
           cp -a Client/dist/. dist/server/public
-          cp -a sever/. dist/server/
+          cp -a server/. dist/server/
           cp composer.json dist/
           
     - name: Deploy 🚀
