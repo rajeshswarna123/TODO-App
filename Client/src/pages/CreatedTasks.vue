@@ -13,6 +13,17 @@ if(session?.user?.id){
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
+const isDescending=ref(false);
+
+function sortBy(prop) {
+    if(isDescending.value){
+      this.allTasks.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
+    }
+    else{
+      this.allTasks.sort((a,b) => a[prop] > b[prop] ? -1 : 1)
+    }
+    isDescending.value=!isDescending.value;
+}
 </script>
 
 <template>
@@ -50,8 +61,8 @@ const assignedTo=ref();
                   <thead>
                     <tr>
                       <th></th>
-                      <th>Title</th>
-                      <th>Due date</th>
+                      <th @click="sortBy('message', isDescending)">Title</th>
+                      <th @click="sortBy('dueDate', isDescending)">Due date</th>
                       <th>Assigned to</th>
                       <th>Owner</th>
                     </tr>
