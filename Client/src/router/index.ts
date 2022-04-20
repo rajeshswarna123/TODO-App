@@ -1,7 +1,10 @@
 import { createRouter, createWebHistory, Router, RouteRecord, RouteRecordRaw } from "vue-router"
 
 import Home from '../pages/Home.vue'
+import CreatedTasks from '../pages/CreatedTasks.vue'
+import AssignedTasks from '../pages/AssignedTasks.vue'
 import Login from '../pages/Login.vue'
+import Layout from '../components/Layout.vue'
 import Signup from '../pages/Signup.vue'
 import session from "../models/session"
 
@@ -12,6 +15,9 @@ const routes: RouteRecordRaw[] = [
   { path: '/tasks', component: Home },
   { path: '/signup', component: Signup },
   { path: '/login', component: Login },
+  { path: '/created-tasks', component: CreatedTasks },
+  { path: '/assigned-tasks', component: AssignedTasks },
+  // { path: '/layout', component:  Layout}
 //   { path: '/messages', component: () => import("../pages/Wall.vue") },
 ]
 

@@ -29,6 +29,14 @@ export const usetasks = defineStore('tasks', {
                     if(_.id==taskId)
                         _.assignedTo = userId
                 });
+        },
+
+        assignedTasks(userId: number){
+          return this.tasks.filter(_=>_.assignedTo == userId);  
+        },
+
+        createdTasks(userId: number){
+            return this.tasks.filter(_=>_.isOwned == userId);
         }
     }
 })

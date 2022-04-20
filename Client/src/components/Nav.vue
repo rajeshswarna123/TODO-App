@@ -23,6 +23,12 @@ import LoginBadge from './LoginBadge.vue';
           <router-link class="navbar-item" to="/tasks">
             Tasks
           </router-link>
+          <router-link class="navbar-item" to="/created-tasks">
+            Created Tasks
+          </router-link>
+          <router-link class="navbar-item" to="/assigned-tasks">
+            Assigned Tasks
+          </router-link>
         </div>
         <div class="navbar-end">
           <div class="navbar-item">
@@ -35,5 +41,7 @@ import LoginBadge from './LoginBadge.vue';
 
 
 <style scoped>
-
+.navbar-start a{
+  margin: 0 2px;
+}
 </style>

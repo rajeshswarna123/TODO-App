@@ -1,46 +1,22 @@
-
-<script setup>
-import { computed, ref } from 'vue';
+<script setup lang="ts">
+import { ref } from "vue-demi";
+import { usetasks } from "../models/task";
+import * as users from "../models/user";
+import session from '../models/session';
 import moment from 'moment';
 
-import { usetasks } from '../models/task'
-import * as users from "../models/user";
-import session from '../models/session'
-import { useRoute } from 'vue-router';
-import CreateTask from '../components/CreateTask.vue';
-
-// export default{
-//   data(){
-//     return {
-//       newTask: 'hgvhg',
-//       dueDate: '',
-//       assignedTo:''
-//     }
-//   }
-// }
-
 const currentTab = ref( 'All' );
-const allTasks = usetasks();
+let allTasks = ref([])
+if(session?.user?.id){
+    allTasks = usetasks().assignedTasks(session.user.id);
+}
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
-
-//Show or hide based on path
-// const route = useRoute();
-// const path = computed(() =>route.path)
-
-// if(path.value === '/tasks'){
-  
-// }
-
-function submitForm(e){
-  allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
-   console.log(newTask);
-}
-
 </script>
+
 <template>
-       <div class="section">
+    <div class="section">
        <div class="container">
         <div class="columns">
           <div class="column">
@@ -81,7 +57,7 @@ function submitForm(e){
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(task,i) in allTasks.tasks" :class="{'text-dec-line-through' : task.isCompleted==true}" v-show="(((currentTab=='All') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)) && ((task.isOwned == session.user.id) || (task.assignedTo == session.user.id)))">
+                    <tr v-for="(task,i) in allTasks" :class="{'text-dec-line-through' : task.isCompleted==true}" v-show="(((currentTab=='All') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)) && ((task.isOwned == session.user.id) || (task.assignedTo == session.user.id)))">
                       <td><input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=session.user?.id"></td>
                       <th>{{task.message}}</th>
                       <td>{{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}</td>
@@ -94,7 +70,7 @@ function submitForm(e){
                         {{users.list.find(u => u.id === task.assignedTo).handle}}
                       </td>
                       <td>
-                        {{users.list.find(u => u.id === task.isOwned).handle}}
+                          {{users.list.find(u => u.id === task.isOwned).handle}}
                       </td>
                     </tr>
                   </tbody>
@@ -106,7 +82,6 @@ function submitForm(e){
     </div>
 </template>
 
-
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
