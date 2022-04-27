@@ -1,0 +1,54 @@
+es (14 sloc)  334 Bytes
+   
+http://localhost:3002
+
+###
+GET http://localhost:3002/api/users
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
+
+###
+GET http://localhost:3002/api/users/62689b2206ba341e328ed645
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
+
+###
+GET http://localhost:3002/api/users/handle/rakhi
+
+###
+DELETE http://localhost:3002/api/users/625878b0e6935ef1cba8451b
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
+
+###
+POST http://localhost:3002/api/users
+Content-Type: application/json
+
+{
+  "firstName": "Rakesh",
+  "lastName": "Nalabothu",
+  "handle": "rakhi",
+  "password": "secret",
+  "email": "rakeshn1@n.edu",
+  "pic": "https://randomuser.me/api/portraits/men/2.jpg"
+}
+
+###
+PATCH  http://localhost:3002/api/users/625878b0e6935ef1cba8451a
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
+
+{
+  "lastName": "Shiva",
+  "email": "life@enjoy.com",
+  "password": "fullest"
+}
+
+###
+POST http://localhost:3002/api/users/login
+Content-Type: application/json
+
+{
+  "email": "rakeshn1@n.edu",
+  "password": "secret"
+}
+
+###
+POST http://localhost:3002/api/users/seed
