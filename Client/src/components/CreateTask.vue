@@ -2,8 +2,9 @@
 import { ref } from "vue-demi";
 import { usetasks } from "../models/task";
 import * as users from "../models/user";
-import session from '../models/session'
+import {useSession} from '../models/session'
 
+const session = useSession();
 const allTasks = usetasks();
 const newTask=ref();
 const dueDate=ref();

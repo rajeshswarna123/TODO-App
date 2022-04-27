@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue-demi"
-import { Login } from "../models/session"
+import { useSession } from "../models/session"
+
+const session = useSession();
 
 const username= ref();
 const password= ref();
 function badLogin(){
-    Login("Rajesh Sunny", "meme")
+    session.Login("Rajesh Sunny", "meme")
 }
 
 function login()
 {
-    Login(username.value, password.value)
+    session.Login(username.value, password.value)
 }
 </script>
 

@@ -1,13 +1,15 @@
 <script setup lang="ts">
 
 import { ref } from "vue-demi";
-import { Login, Signup } from "../models/session"
+import { useSession } from "../models/session"
 import {User} from "../models/user";
     const firstName= ref();
     const lastName= ref();
     const username= ref();
     const password= ref();
     const email= ref();
+
+const session = useSession();
 
 function signup()
 {
@@ -21,7 +23,7 @@ function signup()
         id:0,
         pic: ''
     }
-    Signup(user);
+    // session.Signup(user);
 }
 
 </script>

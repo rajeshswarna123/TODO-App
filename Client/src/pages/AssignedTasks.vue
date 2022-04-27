@@ -2,9 +2,10 @@
 import { ref } from "vue-demi";
 import { usetasks } from "../models/task";
 import * as users from "../models/user";
-import session from '../models/session';
+import {useSession} from '../models/session';
 import moment from 'moment';
 
+const session = useSession();
 const currentTab = ref( 'All' );
 let allTasks = ref([])
 if(session?.user?.id){

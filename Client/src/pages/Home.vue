@@ -5,9 +5,11 @@ import moment from 'moment';
 
 import { usetasks } from '../models/task'
 import * as users from "../models/user";
-import session from '../models/session'
+import {useSession} from '../models/session'
 import { useRoute } from 'vue-router';
 import CreateTask from '../components/CreateTask.vue';
+
+const session = useSession();
 
 // export default{
 //   data(){

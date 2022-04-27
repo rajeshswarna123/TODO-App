@@ -6,7 +6,8 @@ import AssignedTasks from '../pages/AssignedTasks.vue'
 import Login from '../pages/Login.vue'
 import Layout from '../components/Layout.vue'
 import Signup from '../pages/Signup.vue'
-import session from "../models/session"
+import {useSession} from "../models/session"
+
 
 // 2. Define some routes
 // Each route should map to a component.
@@ -32,6 +33,8 @@ const router : Router = createRouter({
 })
 
 router.beforeEach((to, form) =>{
+const session = useSession();
+
   if(['/tasks','/'].includes(to.path)){
       if(!session.user){
           router.push('/login');
