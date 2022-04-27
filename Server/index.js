@@ -3,6 +3,7 @@ const express = require('express')
 const res = require('express/lib/response')
 
 const usersController = require('./controllers/users')
+const tasksController = require('./controllers/tasks')
 const userModel= require('./models/user');
 
 const { requireAuth } = require('./models/auth');
@@ -42,6 +43,7 @@ app
         res.send('You are at the root of the API. For the best class ever ')
     })
     .use('/api/users', usersController)
+    .use('/api/tasks', tasksController)
 
     .use((err, req, res, next) => {
       console.error(err);
