@@ -1,3 +1,9 @@
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { db, isConnected, ObjectId } = require('./mongo');
+
+const collection = db.db("toDoAppDB").collection("users");
+
 let hieghstId = 3;
 
 const list = [
@@ -30,39 +36,97 @@ const list = [
     },
 ];
 
-function get(id){
-    return { ...list.find(user => user.id === parseInt(id)), password: undefined };
+async function get(id){
+    const user = await collection.findOne({ _id: new ObjectId(id) });
+    if(!user) throw {status: 404, message: "User not found"};
+    return { ...user, password: undefined };
 }
 
-function remove(id){
-    const index = list.findIndex(user => user.id === parseInt(id));
-    const user = list.splice(index,1);
-    
-    return { ...user[0], password: undefined};
+async function getByHandle(handle){
+    const user = await collection.findOne({ handle });
+    if(!user) throw {status: 404, message: "User not found"};
+    return { ...user, password: undefined };
 }
 
-function update(id, newUser){
-    const index = list.findIndex(user => user.id === parseInt(id));
-    const oldUser = list[index];
+async function remove(id){
+    const user = await collection.findOneAndDelete({ _id: new ObjectId(id) });
+    return { ...user.value , password: undefined};
+}
 
-    newUser = list[index] = { ...oldUser, ...newUser };
-
-    console.log(list);
+async function update(id, updatedUser){
     
-    return { ...newUser, password: undefined};
+    if(updatedUser.password){
+        updatedUser.password = await bcrypt.hash(updatedUser.password, 10);
+    }
+    
+    updatedUser = await collection.findOneAndUpdate(
+        { _id: new ObjectId(id) },
+        { $set: updatedUser },
+        {returnDocumet: 'after'}
+    );
+    
+    return {...updatedUser, password: undefined};
+}
+
+async function login(email, password){
+    const user = await collection.findOne({ email });
+    console.log(user);
+    if(!user) 
+        throw {status: 404, message: "User not found"};
+
+    if(!await bcrypt.compare(password, user.password))
+        throw {status: 401, message: "Invalid password"};
+
+    const data = {...user, password: undefined};
+    console.log(data);
+    console.log("------------------------------------");
+    console.log(process.env.JWT_SECRET);
+    const token = jwt.sign(data, "@gHtV71s");
+
+    return {...data, token};
+}
+
+function fromToken(token){
+    return new Promise((resolve, reject)=>{
+        jwt.verify(token, "@gHtV71s", (err, decoded)=>{
+            if(err) 
+                reject(err);
+            else
+                resolve(decoded);
+        });
+    });
+}
+
+function seed(){
+    const newList = [...list];
+    newList.forEach(item=>item.password = bcrypt.hashSync(item.password, +process.env.SALT_ROUNDS));
+    return collection.insertMany(newList);
 }
 
 module.exports = {
-    create(user) {
+    collection,
+    seed,
+    async create(user) {
         user.id = ++hieghstId;
 
-        list.push(user);
-        return { ...user, password: undefined};
+        if(!user.handle){
+            throw {status: 400, message: "Handle is required"};
+        }
+        user.password = await bcrypt.hash(user.password, 10);  
+        console.log(user);
+
+        const result = await collection.insertOne(user);
+        user = await get(result.insertedId);
+        return user;
     },
     remove,
     update,
-    get list(){
-        return list.map(x=> ({...x, password: undefined }) );
+    login,
+    fromToken,
+    getByHandle,
+    async getList(){
+        return (await collection.find().toArray()).map(x=> ({...x, password: undefined }) );
     }
 }
+
 module.exports.get = get;
