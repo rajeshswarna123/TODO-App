@@ -53,6 +53,10 @@ async function remove(id){
     return { ...user.value , password: undefined};
 }
 
+async function getHandles(){
+    return (await collection.find().toArray()).map(x=> ({_id:x._id, handle: x.handle}) );
+}
+
 async function update(id, updatedUser){
     
     if(updatedUser.password){
@@ -124,6 +128,7 @@ module.exports = {
     login,
     fromToken,
     getByHandle,
+    getHandles,
     async getList(){
         return (await collection.find().toArray()).map(x=> ({...x, password: undefined }) );
     }

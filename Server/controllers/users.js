@@ -16,7 +16,7 @@ app
         }).catch(next);
         //res.send(userModel.list);
     })
-    .get('/handle/:handle', (req, res, next) => {
+    .get('/handle/:handle', requireAuth, (req, res, next) => {
         userModel.getByHandle(req.params.handle)
         .then(user => {
             res.send({ success: true, errors: [], data: user });
@@ -25,6 +25,17 @@ app
         //res.send(user);
 
     })
+
+    .get('/handles', requireAuth, (req, res, next) => {
+        userModel.getHandles()
+        .then(user => {
+            res.send({ success: true, errors: [], data: user });
+        }).catch(next);
+        //const user = userModel.get(req.params.id);
+        //res.send(user);
+
+    })
+
     .get('/:id', (req, res, next) => {
         userModel.get(req.params.id)
         .then(user => {
