@@ -27,6 +27,15 @@ const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
 const isDescending=ref(false);
+const userHandles = ref([]);
+if(!session.userHandles){
+  session.GetUserHandles().then(()=>{
+    userHandles.value = session.userHandles;
+  });
+}
+else
+  userHandles.value = session.userHandles;
+
 
 //Show or hide based on path
 // const route = useRoute();
@@ -100,14 +109,14 @@ function sortBy(prop) {
                       <td>{{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}</td>
                       <td v-if="task.isOwned==session.user?.id">
                         <select v-model="task.assignedTo" class="select">
-                          <option v-for="user in users.list" :value="user.id">{{user.handle}}</option>
+                          <option :v-for="user in userHandles" :value="user._id">{{user.handle}}</option>
                         </select>
                       </td>
                       <td v-if="task.isOwned!=session.user?.id">
-                        {{users.list.find(u => u.id === task.assignedTo).handle}}
+                        {{userHandles.find(u => u._id === task.assignedTo)?.handle}}
                       </td>
                       <td>
-                        {{users.list.find(u => u.id === task.isOwned).handle}}
+                        {{userHandles.find(u => u._id === task.isOwned)?.handle}}
                       </td>
                     </tr>
                   </tbody>

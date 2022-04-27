@@ -9,6 +9,14 @@ const allTasks = usetasks();
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
+const userHandles = ref([]);
+if(!session.userHandles){
+  session.GetUserHandles().then(()=>{
+    userHandles.value = session.userHandles;
+  });
+}
+else
+  userHandles.value = session.userHandles;
 
 function submitForm(e){
   allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
@@ -31,7 +39,7 @@ function submitForm(e){
                   <div class="column">
                     <select v-model="assignedTo" class="select">
                       <option disabled selected>Assign to</option>
-                      <option v-for="user in users.list" :value="user.id">{{user.handle}}</option>
+                      <option v-for="user in userHandles" :value="user._id">{{user.handle}}</option>
                     </select>
                   </div>
                     <button  type="submit" class="button">Create</button>
