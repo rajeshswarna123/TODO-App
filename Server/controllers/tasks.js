@@ -16,6 +16,13 @@ app
         }).catch(next);
         //res.send(userModel.list);
     })
+    .get('/currentUserTasks', requireAuth, (req, res, next) => {
+        taskModel.getCurrentUserTasks(req.user._id)
+        .then(tasks => {
+            res.send({ success: true, errors: [], data: tasks });
+        }).catch(next);
+        //res.send(userModel.list);
+    })
     .get('/handle/:handle', requireAuth, (req, res, next) => {
         taskModel.getBytitle(req.params.title)
         .then(task => {

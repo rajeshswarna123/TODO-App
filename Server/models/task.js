@@ -78,6 +78,15 @@ module.exports = {
     getCreatedTasks,
     async getList(){
         return (await collection.find().toArray()).map(x=> ({...x }) );
+    },
+    async getCurrentUserTasks(userId){
+        return (await collection.find({ $or: [ { assignedTo: userId }, { isOwned: userId } ] }).toArray()).map(x=> ({...x }) );
+    },
+    async getCurrentUserTasks(userId){
+        return (await collection.find({ $or: [ { assignedTo: userId }, { isOwned: userId } ] }).toArray()).map(x=> ({...x }) );
+    },
+    async getCurrentUserTasks(userId){
+        return (await collection.find({ $or: [ { assignedTo: userId }, { isOwned: userId } ] }).toArray()).map(x=> ({...x }) );
     }
 }
 
