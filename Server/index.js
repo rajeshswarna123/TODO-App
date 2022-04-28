@@ -14,7 +14,6 @@ const port = process.env.PORT || 3002;
 // console.log(process.env);
 
 app
-    // .use('/', express.static('server/public/'))
     .use('/', express.static(__dirname +'/public/'))
 
     .use(function(req, res, next) {
@@ -48,7 +47,7 @@ app
     .use((err, req, res, next) => {
       console.error(err);
       
-      res .status(err.statusCode || 500)
+      res.status(err.statusCode || 500)
             .send({ errors: [ err.message ?? 'Internal server error' ] });
     })
 
