@@ -35,7 +35,7 @@ const router : Router = createRouter({
 router.beforeEach((to, form) =>{
 const session = useSession();
 
-  if(['/tasks','/'].includes(to.path)){
+  if(['/tasks','/','/created-tasks','/assigned-tasks'].includes(to.path)){
       if(!session.user){
           router.push('/login');
       }
