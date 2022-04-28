@@ -4,13 +4,23 @@ import { usetasks } from "../models/task";
 import * as users from "../models/user";
 import {useSession} from '../models/session';
 import moment from 'moment';
+import TaskView from '../components/TaskView.vue';
 
 const currentTab = ref( 'All' );
-let allTasks = ref([])
 const session = useSession();
-if(session?.user?.id){
-    allTasks = usetasks().createdTasks(session.user.id);
+const tasks = usetasks();
+tasks.createdTasks()
+
+const userHandles = ref([]);
+if(!session.userHandles){
+  session.GetUserHandles().then(()=>{
+    userHandles.value = session.userHandles;
+  });
 }
+else
+  userHandles.value = session.userHandles;
+
+
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
@@ -18,10 +28,10 @@ const isDescending=ref(false);
 
 function sortBy(prop) {
     if(isDescending.value){
-      this.allTasks.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
+      this.tasks.cTasks.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
     }
     else{
-      this.allTasks.sort((a,b) => a[prop] > b[prop] ? -1 : 1)
+      this.tasks.cTasks.sort((a,b) => a[prop] > b[prop] ? -1 : 1)
     }
     isDescending.value=!isDescending.value;
 }
@@ -69,22 +79,7 @@ function sortBy(prop) {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(task,i) in allTasks" :class="{'text-dec-line-through' : task.isCompleted==true}" v-show="(((currentTab=='All') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)) && ((task.isOwned == session.user.id) || (task.assignedTo == session.user.id)))">
-                      <td><input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=session.user?.id"></td>
-                      <th>{{task.message}}</th>
-                      <td>{{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}</td>
-                      <td v-if="task.isOwned==session.user?.id">
-                        <select v-model="task.assignedTo" class="select">
-                          <option v-for="user in users.list" :value="user.id">{{user.handle}}</option>
-                        </select>
-                    </td>
-                      <td v-if="task.isOwned!=session.user?.id">
-                        {{users.list.find(u => u.id === task.assignedTo).handle}}
-                      </td>
-                      <td>
-                          {{users.list.find(u => u.id === task.isOwned).handle}}
-                      </td>
-                    </tr>
+                    <task-view v-for="task in tasks.cTasks" :key="task._id" :task="task" :user="session.user" :userHandles="userHandles" :currentTab="currentTab"></task-view>
                   </tbody>
                 </table>
               </article>

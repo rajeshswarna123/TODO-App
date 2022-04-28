@@ -8,6 +8,7 @@ import * as users from "../models/user";
 import {useSession} from '../models/session'
 import { useRoute } from 'vue-router';
 import CreateTask from '../components/CreateTask.vue';
+import TaskView from '../components/TaskView.vue';
 
 const session = useSession();
 
@@ -22,7 +23,6 @@ const session = useSession();
 // }
 
 const currentTab = ref( 'All' );
-const allTasks = usetasks();
 const newTask=ref();
 const dueDate=ref();
 const assignedTo=ref();
@@ -36,7 +36,13 @@ if(!session.userHandles){
 else
   userHandles.value = session.userHandles;
 
-
+const tasks = usetasks();
+tasks.getTasks()
+// if(session?.user?._id){
+//   if(!tasks.tasks || tasks.tasks.length === 0){
+//          tasks.getTasks()
+//   }
+// }
 //Show or hide based on path
 // const route = useRoute();
 // const path = computed(() =>route.path)
@@ -46,16 +52,16 @@ else
 // }
 
 function submitForm(e){
-  allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
+  tasks.createTasks(Math.max(...tasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
    console.log(newTask);
 }
 
 function sortBy(prop) {
     if(isDescending.value){
-      this.allTasks.tasks.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
+      this.tasks.tasks.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
     }
     else{
-      this.allTasks.tasks.sort((a,b) => a[prop] > b[prop] ? -1 : 1)
+      this.tasks.tasks.sort((a,b) => a[prop] > b[prop] ? -1 : 1)
     }
     isDescending.value=!isDescending.value;
 }
@@ -103,22 +109,7 @@ function sortBy(prop) {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr v-for="(task,i) in allTasks.tasks" :class="{'text-dec-line-through' : task.isCompleted==true}" v-show="(((currentTab=='All') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)) && ((task.isOwned == session.user.id) || (task.assignedTo == session.user.id)))">
-                      <td><input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=session.user?.id"></td>
-                      <th>{{task.message}}</th>
-                      <td>{{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}</td>
-                      <td v-if="task.isOwned==session.user?.id">
-                        <select v-model="task.assignedTo" class="select">
-                          <option :v-for="user in userHandles" :value="user._id">{{user.handle}}</option>
-                        </select>
-                      </td>
-                      <td v-if="task.isOwned!=session.user?.id">
-                        {{userHandles.find(u => u._id === task.assignedTo)?.handle}}
-                      </td>
-                      <td>
-                        {{userHandles.find(u => u._id === task.isOwned)?.handle}}
-                      </td>
-                    </tr>
+                        <task-view v-for="task in tasks.tasks" :key="task._id" :task="task" :user="session.user" :userHandles="userHandles" :currentTab="currentTab"></task-view>
                   </tbody>
                 </table>
               </article>
