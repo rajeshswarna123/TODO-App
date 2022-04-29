@@ -17,8 +17,13 @@ export const usetasks = defineStore('tasks', {
         },
 
         async createTasks(id: any, message: any, dueDate: any, assignedTo: any, userId: any , isCompleted: any= false){
-            const newPost = await this.session.api('posts', {isCompleted: isCompleted,title: message, dueDate: new Date(dueDate),isOwned: userId,assignedTo: assignedTo});
+            const newPost = await this.session.api('tasks', {isCompleted: isCompleted,title: message, dueDate: new Date(dueDate),isOwned: userId,assignedTo: assignedTo});
             this.tasks.push(newPost);
+        },
+
+        async updateTask(task: Task){
+            return await this.session.api('tasks/' + task._id, task, 'PATCH')
+
         },
 
         // taskAssignement(taskId: number, userId: number){
@@ -49,7 +54,7 @@ export const usetasks = defineStore('tasks', {
 export interface Task {
     _id?: string;
     isCompleted: string;
-    dueDate: string;
+    dueDate: Date;
     isOwned: string;
     userId?: string;
     assignedTo: string[];
