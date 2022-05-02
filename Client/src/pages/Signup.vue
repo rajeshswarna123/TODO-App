@@ -21,7 +21,8 @@ function signup()
         password: password.value,
         email: email.value,
         id:0,
-        pic: ''
+        pic: '',
+        _id: '',
     }
     // session.Signup(user);
 }
