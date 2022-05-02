@@ -19,8 +19,7 @@ else
   userHandles.value = session.userHandles;
 
 function submitForm(){
-  allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
-   console.log(newTask);
+  allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user._id,false);
 }
 </script>
 
