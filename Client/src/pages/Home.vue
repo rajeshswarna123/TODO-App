@@ -56,7 +56,7 @@ function submitForm(e){
    console.log(newTask);
 }
 
-function sortBy(prop) {
+function sortBy(prop: string) {
     if(isDescending.value){
       this.tasks.tasks.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
     }
