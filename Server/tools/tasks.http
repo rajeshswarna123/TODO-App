@@ -1,32 +1,32 @@
 es (14 sloc)  334 Bytes
    
-http://localhost:3002
+http://localhost:3001
 
 ###
-GET http://localhost:3002/api/tasks
+GET http://localhost:3001/api/tasks
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
 
 ###
-GET http://localhost:3002/api/tasks/task/62697109202f843e6034abfc
+GET http://localhost:3001/api/tasks/task/62697109202f843e6034abfc
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
 
 ###
-GET http://localhost:3002/api/tasks/assignedtasks
+GET http://localhost:3001/api/tasks/assignedtasks
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
 
 ###
-GET http://localhost:3002/api/tasks/createdtasks
+GET http://localhost:3001/api/tasks/createdtasks
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
 
 ###
-GET http://localhost:3002/api/tasks/handle/rakhi
+GET http://localhost:3001/api/tasks/handle/rakhi
 
 ###
-DELETE http://localhost:3002/api/tasks/625878b0e6935ef1cba8451b
+DELETE http://localhost:3001/api/tasks/625878b0e6935ef1cba8451b
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
 
 ###
-POST http://localhost:3002/api/tasks
+POST http://localhost:3001/api/tasks
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
 
@@ -37,18 +37,16 @@ Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyM
 }
 
 ###
-PATCH  http://localhost:3002/api/tasks/625878b0e6935ef1cba8451a
+PATCH   http://localhost:3001/api/tasks/62697109202f843e6034abfc
 Content-Type: application/json
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MjY4OWIyMjA2YmEzNDFlMzI4ZWQ2NDUiLCJmaXJzdE5hbWUiOiJSYWtlc2giLCJsYXN0TmFtZSI6Ik5hbGFib3RodSIsImhhbmRsZSI6InJha2hpIiwiZW1haWwiOiJyYWtlc2huMUBuLmVkdSIsInBpYyI6Imh0dHBzOi8vcmFuZG9tdXNlci5tZS9hcGkvcG9ydHJhaXRzL21lbi8yLmpwZyIsImlkIjo0LCJpYXQiOjE2NTEwMjM1NDB9.O6FTTXxjSp4107THGMRSGAE17-LKA-Y5IhbBi3J8CO8
 
 {
-  "lastName": "Shiva",
-  "email": "life@enjoy.com",
-  "password": "fullest"
+  "title": "Make Bulmaagain"
 }
 
 ###
-POST http://localhost:3002/api/tasks/login
+POST http://localhost:3001/api/tasks/login
 Content-Type: application/json
 
 {
@@ -57,4 +55,4 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3002/api/tasks/seed
+POST http://localhost:3001/api/tasks/seed
