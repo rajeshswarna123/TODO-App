@@ -59,4 +59,5 @@ export interface Task {
     userId?: string;
     assignedTo: string[];
     title: string;
+    id: number;
 }
