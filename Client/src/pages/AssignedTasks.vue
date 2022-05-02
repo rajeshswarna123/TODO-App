@@ -25,7 +25,7 @@ const dueDate=ref();
 const assignedTo=ref();
 const isDescending=ref(false);
 
-function sortBy(prop) {
+function sortBy(prop: string) {
     if(isDescending.value){
       this.tasks.aTasks.sort((a,b) => a[prop] < b[prop] ? -1 : 1)
     }
