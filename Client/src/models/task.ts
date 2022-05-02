@@ -53,7 +53,7 @@ export const usetasks = defineStore('tasks', {
 
 export interface Task {
     _id?: string;
-    isCompleted: string;
+    isCompleted: boolean;
     dueDate: Date;
     isOwned: string;
     userId?: string;
