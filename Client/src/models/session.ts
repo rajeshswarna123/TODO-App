@@ -10,7 +10,7 @@ export const useSession = defineStore('session', {
     state: () => ({
         user: null as users.User | null,
         destinationUrl: null as string | null,
-        userHandles: null as [] | null,
+        userHandles: [],
     }),
     actions: {
 
