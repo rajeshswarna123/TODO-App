@@ -83,7 +83,7 @@ export const useSession = defineStore('session', {
             }
         },
 
-        async api(url: string, data?: any, method?: 'GET' | 'POST' | 'PUT' | 'DELETE', headers: any = {}) {
+        async api(url: string, data?: any, method?: 'GET' | 'POST' | 'PUT' | 'DELETE'| 'PATCH', headers: any = {}) {
             const messages = useMessages();
 
             if (this.user?.token) {
