@@ -7,6 +7,7 @@ export interface User {
     email: string;
     pic: string;
     id: number;
+    _id: string;
     token?: string ;
 }
 
