@@ -9,7 +9,7 @@ import TaskView from '../components/TaskView.vue';
 const session = useSession();
 const currentTab = ref( 'All' );
 const userHandles = ref([]);
-if(!session.userHandles){
+if(!session.userHandles || (session.userHandles.length===0)){
   session.GetUserHandles().then(()=>{
     userHandles.value = session.userHandles;
   });
