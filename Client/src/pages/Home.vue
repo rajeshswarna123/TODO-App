@@ -11,17 +11,6 @@ import CreateTask from '../components/CreateTask.vue';
 import TaskView from '../components/TaskView.vue';
 
 const session = useSession();
-
-// export default{
-//   data(){
-//     return {
-//       newTask: 'hgvhg',
-//       dueDate: '',
-//       assignedTo:''
-//     }
-//   }
-// }
-
 const currentTab = ref( 'All' );
 const newTask=ref();
 const dueDate=ref();
