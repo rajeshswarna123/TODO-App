@@ -18,6 +18,7 @@ const routes: RouteRecordRaw[] = [
   { path: '/login', component: Login },
   { path: '/created-tasks', component: CreatedTasks },
   { path: '/assigned-tasks', component: AssignedTasks },
+  { path: '/task/:id?', component: () => import('../pages/TaskDetails.vue') },
   // { path: '/layout', component:  Layout}
 //   { path: '/messages', component: () => import("../pages/Wall.vue") },
 ]
