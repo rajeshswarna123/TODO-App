@@ -4,6 +4,7 @@ const res = require('express/lib/response')
 
 const usersController = require('./controllers/users')
 const tasksController = require('./controllers/tasks')
+const commentsController = require('./controllers/comments')
 const userModel= require('./models/user');
 
 const { requireAuth } = require('./models/auth');
@@ -48,6 +49,7 @@ app
     })
     .use('/api/users', usersController)
     .use('/api/tasks', tasksController)
+    .use('/api/comments', commentsController)
 
     .use((err, req, res, next) => {
       console.error(err);
