@@ -20,13 +20,17 @@ import { ref } from 'vue-demi';
     <tr :class="{'text-dec-line-through' : task.isCompleted==true}"
                     v-show="(currentTab=='All') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)">
                       <td><input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=user?._id"></td>
-                      <th v-show="!editIt">{{task.title}}</th>
+                      <th v-show="!editIt">
+                        <router-link class="navbar-item" :to="'/task/'+task._id">
+                          {{task.title}}
+                        </router-link>
+                      </th>
                       <th v-show="editIt"><input class="input" type="input" v-model="task.title"></th>
                       <td v-if="!editIt">{{moment(String(task.dueDate)).format('MMM-DD-YYYY') }}</td>
                       <td v-else><input type="" class="input" v-model="task.dueDate"/></td>
                       <td v-if="task.isOwned==user?._id">
                         <select v-model="task.assignedTo" class="select" v-if="editIt">
-                          <option :v-for="user in userHandles" :value="user._id">{{user.handle}}</option>
+                          <option :v-for="user in userHandles" :value="user?._id">{{user.handle}}</option>
                         </select>
                         <span v-else>{{userHandles.find(u => u._id === task.assignedTo)?.handle}}</span>
                       </td>
