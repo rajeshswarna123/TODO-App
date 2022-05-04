@@ -45,7 +45,7 @@ export const usetasks = defineStore('tasks', {
         },
 
         async createdTasks(){
-            const tasks = await this.session.api('tasks/currentUserTasks');
+            const tasks = await this.session.api('tasks/createdtasks');
             this.cTasks = tasks;
         }
     }
