@@ -38,7 +38,7 @@ import { getComments, addComment, Comment } from "../models/comment";
     getComments(taskId).then(res => {
         comments.value = res;
         comments.value.forEach(c => {
-            c.userHandel = userHandles.value.find(u => u._id === c.userId)?.handle;
+            c.userHandel = userHandles.value?.find(u => u._id === c.userId)?.handle;
         });
     });
     
