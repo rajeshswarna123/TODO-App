@@ -37,12 +37,12 @@ router.beforeEach((to, form) =>{
 const session = useSession();
 
   if(['/tasks','/','/created-tasks','/assigned-tasks'].includes(to.path)){
-      if(!session.user){
+      if(!session.user || !session.user._id){
           router.push('/login');
       }
   }
   else if(['/login', '/signup'].includes(to.path)){
-    if(session.user){
+    if(session.user && session.user._id){
         router.push('/tasks');
     }
 }

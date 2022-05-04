@@ -3,6 +3,8 @@
 import { ref } from 'vue';
 
 import LoginBadge from './LoginBadge.vue';
+import  { useSession } from "../models/session";
+    const session = useSession()
 
 </script>
 
@@ -16,7 +18,7 @@ import LoginBadge from './LoginBadge.vue';
         </div>
       </div>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
-        <div class="navbar-start">
+        <div class="navbar-start"  v-if="session.user && session.user._id">
           <router-link class="navbar-item" to="/tasks">
             Tasks
           </router-link>

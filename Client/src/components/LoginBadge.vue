@@ -4,7 +4,7 @@
 </script>
 
 <template>
-    <div class="buttons" v-if="!session.user">
+    <div class="buttons" v-if="!session.user || !session.user._id">
         <router-link class="button is-danger" to="/signup">
             <strong>Sign up</strong>
         </router-link>
