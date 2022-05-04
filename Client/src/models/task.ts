@@ -47,10 +47,6 @@ export const usetasks = defineStore('tasks', {
         async createdTasks(){
             const tasks = await this.session.api('tasks/currentUserTasks');
             this.cTasks = tasks;
-        },
-
-        async addComment(taskId: string, comment: string, isReply: boolean=false){
-            return await this.session.api('comments/', {taskId: taskId, text: comment, isReply: isReply});
         }
     }
 })
