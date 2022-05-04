@@ -72,8 +72,8 @@ function sortBy(prop: string) {
                   <thead>
                     <tr>
                       <th></th>
-                      <th @click="sortBy('message', isDescending)">Title</th>
-                      <th @click="sortBy('dueDate', isDescending)">Due date</th>
+                      <th @click="sortBy('message')">Title</th>
+                      <th @click="sortBy('dueDate')">Due date</th>
                       <th>Assigned to</th>
                       <th>Owner</th>
                     </tr>
