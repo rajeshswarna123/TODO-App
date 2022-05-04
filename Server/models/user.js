@@ -60,7 +60,7 @@ async function getHandles(){
 async function update(id, updatedUser){
     
     if(updatedUser.password){
-        updatedUser.password = await bcrypt.hash(updatedUser.password, 10);
+        updatedUser.password = await bcrypt.hash(updatedUser.password, process.env.SALT_ROUNDS);
     }
     
     updatedUser = await collection.findOneAndUpdate(
@@ -85,14 +85,14 @@ async function login(email, password){
     console.log(data);
     console.log("------------------------------------");
     console.log(process.env.JWT_SECRET);
-    const token = jwt.sign(data, "@gHtV71s");
+    const token = jwt.sign(data, process.env.JWT_SECRET);
 
     return {...data, token};
 }
 
 function fromToken(token){
     return new Promise((resolve, reject)=>{
-        jwt.verify(token, "@gHtV71s", (err, decoded)=>{
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded)=>{
             if(err) 
                 reject(err);
             else
@@ -116,7 +116,7 @@ module.exports = {
         if(!user.handle){
             throw {status: 400, message: "Handle is required"};
         }
-        user.password = await bcrypt.hash(user.password, 10);  
+        user.password = await bcrypt.hash(user.password, process.env.SALT_ROUNDS);  
         console.log(user);
 
         const result = await collection.insertOne(user);
