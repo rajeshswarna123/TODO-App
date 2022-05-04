@@ -18,4 +18,6 @@ export interface Comment {
     isReply: boolean;
     createdDate?: string;
     modifiedDate?: string;
+    userId?: string;
+    userHandel?: string;
 }
