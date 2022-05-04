@@ -19,12 +19,11 @@ function signup()
         lastName: lastName.value,
         handle: username.value,
         password: password.value,
-        email: email.value,
-        id:0,
-        pic: '',
-        _id: '',
+        email: email.value
     }
-    // session.Signup(user);
+    session.Signup(user).then(()=>{
+        session.Login(user.email, user.password);
+    });
 }
 
 </script>
