@@ -11,6 +11,11 @@ export interface User {
     token?: string ;
 }
 
+export interface UserHandel {
+    handle: string;
+    _id: string;
+}
+
 // export const list: User[] = [
 //     {
 //         firstName: 'John',
