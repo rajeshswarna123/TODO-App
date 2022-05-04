@@ -30,7 +30,7 @@ app
         }).catch(next);
     })
     .post('/', requireAuth, (req, res,next) => {
-        commentModel.create(req.body)
+        commentModel.create(req.user._id, req.body)
         .then(comment => {
             res.status(CREATED_STATUS).send({ success: true, errors: [], data: comment });
         }).catch(next);
