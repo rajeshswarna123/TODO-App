@@ -16,7 +16,7 @@ app
         }).catch(next);
         //res.send(userModel.list);
     })
-    .get('/comments/:taskid', requireAuth, (req, res, next) => {
+    .get('/task/:taskid', requireAuth, (req, res, next) => {
         commentModel.getComments(req.params.taskid)
         .then(comments => {
             res.send({ success: true, errors: [], data: comments });
