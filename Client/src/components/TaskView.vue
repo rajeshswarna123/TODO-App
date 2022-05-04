@@ -30,7 +30,7 @@ import { ref } from 'vue-demi';
                       <td v-else><input type="" class="input" v-model="task.dueDate"/></td>
                       <td v-if="task.isOwned==user?._id">
                         <select v-model="task.assignedTo" class="select" v-if="editIt">
-                          <option :v-for="user in userHandles" :value="user?._id">{{user.handle}}</option>
+                          <option v-for="user in userHandles" :value="user?._id">{{user.handle}}</option>
                         </select>
                         <span v-else>{{userHandles.find(u => u._id === task.assignedTo)?.handle}}</span>
                       </td>
