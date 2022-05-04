@@ -21,9 +21,9 @@ export const usetasks = defineStore('tasks', {
             this.tasks.push(newPost);
         },
 
-        async updateTask(task: Task){
-            return await this.session.api('tasks/' + task._id, task, 'PATCH')
-
+        async updateTask(taskId: string,task: Task){
+            delete task._id; delete task.isOwned;
+            return await this.session.api('tasks/' + taskId, task, 'PATCH')
         },
 
         // taskAssignement(taskId: number, userId: number){
@@ -49,8 +49,8 @@ export const usetasks = defineStore('tasks', {
             this.cTasks = tasks;
         },
 
-        async addComment(taskId: string, comment: string){
-            return await this.session.api('comments/', {taskId: taskId, text: comment});
+        async addComment(taskId: string, comment: string, isReply: boolean=false){
+            return await this.session.api('comments/', {taskId: taskId, text: comment, isReply: isReply});
         }
     }
 })
@@ -58,8 +58,8 @@ export const usetasks = defineStore('tasks', {
 export interface Task {
     _id?: string;
     isCompleted: boolean;
-    dueDate: Date;
-    isOwned: string;
+    dueDate: string;
+    isOwned?: string;
     userId?: string;
     assignedTo: string[];
     title: string;
