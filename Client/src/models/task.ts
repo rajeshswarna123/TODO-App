@@ -21,8 +21,8 @@ export const usetasks = defineStore('tasks', {
             this.tasks.push(newPost);
         },
 
-        async updateTask(taskId: string,task: Task){
-            delete task._id; delete task.isOwned;
+        async updateTask(taskId?: string,task?: Task){
+            delete task?._id; delete task?.isOwned;
             return await this.session.api('tasks/' + taskId, task, 'PATCH')
         },
 
