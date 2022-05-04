@@ -103,7 +103,7 @@ function fromToken(token){
 
 function seed(){
     const newList = [...list];
-    newList.forEach(item=>item.password = bcrypt.hashSync(item.password, +process.env.SALT_ROUNDS));
+    newList.forEach(item=>item.password = bcrypt.hashSync(item.password, +Number(process.env.SALT_ROUNDS)));
     return collection.insertMany(newList);
 }
 
@@ -116,7 +116,7 @@ module.exports = {
         if(!user.handle){
             throw {status: 400, message: "Handle is required"};
         }
-        user.password = await bcrypt.hash(user.password, process.env.SALT_ROUNDS);  
+        user.password = await bcrypt.hash(user.password, Number(process.env.SALT_ROUNDS));  
         console.log(user);
 
         const result = await collection.insertOne(user);
