@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue-demi";
 import { usetasks } from "../models/task";
-import * as users from "../models/user";
+import {UserHandel} from "../models/user";
 import {useSession} from '../models/session';
 import moment from 'moment';
 import TaskView from '../components/TaskView.vue';
@@ -11,7 +11,7 @@ const session = useSession();
 const tasks = usetasks();
 tasks.createdTasks()
 
-const userHandles = ref([]);
+const userHandles = ref<UserHandel[]>();
 if(!session.userHandles || (session.userHandles.length===0)){
   session.GetUserHandles().then(()=>{
     userHandles.value = session.userHandles;
