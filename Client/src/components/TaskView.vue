@@ -8,7 +8,7 @@ import { ref } from 'vue-demi';
     let editIt= ref(false);
     const tasks = usetasks();
     function update(){
-        tasks.updateTask(task).then(()=>{
+        tasks.updateTask(task._id,task).then(()=>{
             editIt.value = false;
         });
     }
