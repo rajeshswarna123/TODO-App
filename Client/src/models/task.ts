@@ -57,7 +57,7 @@ export interface Task {
     dueDate: string;
     isOwned?: string;
     userId?: string;
-    assignedTo: string[];
+    assignedTo: string;
     title: string;
     id: number;
 }
