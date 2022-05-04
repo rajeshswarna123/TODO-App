@@ -1,10 +1,10 @@
 <script setup lang="ts">
     import { Task, usetasks } from '../models/task';
-    import { User } from '../models/user';
+    import { User, UserHandel } from '../models/user';
     import moment from 'moment';
 import { ref } from 'vue-demi';
 
-    const { task, user, userHandles, currentTab } = defineProps<{ task: Task, user: User, userHandles: any, currentTab: string }>();
+    const { task, user, userHandles, currentTab } = defineProps<{ task: Task, user: User, userHandles: UserHandel[], currentTab: string }>();
     let editIt= ref(false);
     const tasks = usetasks();
     function update(){

@@ -8,6 +8,7 @@ import router from "../router";
 import { useSession } from "../models/session";
 import { Task, usetasks } from "../models/task";
 import { getComments, addComment, Comment } from "../models/comment";
+import { UserHandel } from "../models/user";
 
 
     const route = useRoute();
@@ -26,7 +27,7 @@ import { getComments, addComment, Comment } from "../models/comment";
             console.log(task);
         }
     });
-    const userHandles = ref([]);
+    const userHandles = ref<UserHandel[]>();
     if(!session.userHandles || (session.userHandles.length===0)){
     session.GetUserHandles().then(()=>{
         userHandles.value = session.userHandles;
