@@ -83,7 +83,7 @@ import { getComments, addComment, Comment } from "../models/comment";
                         <select v-model="task.assignedTo" class="form-select"  id="floatingSelectGrid" aria-label="Floating label select example">
                             <option v-for="user in userHandles" :value="user?._id">{{user?.handle}}</option>
                         </select>
-                        <label for="floatingSelectGrid">Works with selects</label>
+                        <label for="floatingSelectGrid">Assign to</label>
                     </div>
                     
                 </div>
