@@ -3,7 +3,7 @@
 
 
 import Nav from './components/Nav.vue'
-
+import "bootstrap/dist/css/bootstrap.min.css";
 
 </script>
 
