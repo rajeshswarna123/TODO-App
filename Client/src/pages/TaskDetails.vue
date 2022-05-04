@@ -75,7 +75,7 @@ import { Task, usetasks } from "../models/task";
                     
                 </div>
             </div>
-            <button class="button is-primary is-light is-outlined">Update Task</button>
+            <button class="button is-primary btn-success">Update Task</button>
         </form>
         <hr />
         <form class="form mb-5" @submit.prevent="addComment">
