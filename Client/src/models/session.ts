@@ -8,7 +8,7 @@ import { defineStore } from "pinia";
 
 export const useSession = defineStore('session', {
     state: () => ({
-        user: null as users.User | null,
+        user: {} as users.User,
         destinationUrl: null as string | null,
         userHandles: [],
     }),
