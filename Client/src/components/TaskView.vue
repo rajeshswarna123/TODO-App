@@ -45,7 +45,6 @@ import { ref } from 'vue-demi';
                         <button class="button is-danger is-rounded">Cancel</button> 
                         <button class="button is-success is-rounded" @click="update()">Update</button>
                       </td>
-                      {{editIt}}
                     </tr>
 </template>
 
