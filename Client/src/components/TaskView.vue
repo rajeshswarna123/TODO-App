@@ -40,11 +40,11 @@ import { ref } from 'vue-demi';
                       <td>
                         {{userHandles.find(u => u._id === task.isOwned)?.handle}}
                       </td>
-                      <td v-if="!editIt"><button class="button is-primary is-light is-outlined" @click="edit()">Edit</button></td>
+                      <!-- <td v-if="!editIt"><button class="button is-primary is-light is-outlined" @click="edit()">Edit</button></td>
                       <td v-else>
                         <button class="button is-danger is-rounded">Cancel</button> 
                         <button class="button is-success is-rounded" @click="update()">Update</button>
-                      </td>
+                      </td> -->
                     </tr>
 </template>
 
