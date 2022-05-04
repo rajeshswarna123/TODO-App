@@ -22,7 +22,8 @@ async function get(id){
     return comment;
 }
 
-async function create(comment) {
+async function create(userId, comment) {
+    comment.userId = userId;
     if(!comment.text){
         throw {status: 400, message: "Test is required"};
     }
