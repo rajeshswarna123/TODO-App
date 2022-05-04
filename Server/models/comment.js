@@ -27,6 +27,7 @@ async function create(comment) {
         throw {status: 400, message: "Test is required"};
     }
     comment.createdDate = new Date();
+    comment.modifiedDate = new Date();
     const result = await collection.insertOne(comment);
     comment = await get(result.insertedId);
     return comment;
