@@ -14,7 +14,7 @@ export async function addComment(comment: Comment){
 export interface Comment {
     _id?: string;
     text: string;
-    taskId: string;
+    taskId?: string;
     isReply: boolean;
     createdDate?: string;
     modifiedDate?: string;
