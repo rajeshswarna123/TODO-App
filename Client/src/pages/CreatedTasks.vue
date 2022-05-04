@@ -11,7 +11,7 @@ const session = useSession();
 const tasks = usetasks();
 tasks.createdTasks()
 
-const userHandles = ref<UserHandel[]>();
+const userHandles = ref<UserHandel[]>([]);
 if(!session.userHandles || (session.userHandles.length===0)){
   session.GetUserHandles().then(()=>{
     userHandles.value = session.userHandles;
