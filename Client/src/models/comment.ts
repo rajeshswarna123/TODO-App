@@ -7,7 +7,7 @@ export async function getComments(taskId: string){
 }
 
 export async function addComment(comment: Comment){
-    return await session.api('comments/', {comment: comment});
+    return await session.api('comments/', comment);
 }
 
 
