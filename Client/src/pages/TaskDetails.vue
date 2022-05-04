@@ -3,15 +3,18 @@
 import moment from "moment";
 import { ref } from "vue-demi";
 import { useRoute } from "vue-router";
+import router from "../router";
+
 import { useSession } from "../models/session";
 import { Task, usetasks } from "../models/task";
 import { getComments, addComment, Comment } from "../models/comment";
+
 
     const route = useRoute();
     const tasks = usetasks();
     const session = useSession();
     let task: Task;
-    let comments: Comment[]=[];
+    const comments=ref<Comment[]>([]);
     let comment:Comment;
     const commentText = ref("");
     const taskId = route.params.id as string; 
@@ -30,16 +33,19 @@ import { getComments, addComment, Comment } from "../models/comment";
     });
     }
     else
-    userHandles.value = session.userHandles;
+        userHandles.value = session.userHandles;
 
     getComments(taskId).then(res => {
-        comments = res;
+        comments.value = res;
+        comments.value.forEach(c => {
+            c.userHandel = userHandles.value.find(u => u._id === c.userId)?.handle;
+        });
     });
     
     
     function update(){
         tasks.updateTask(task._id, task).then(()=>{
-            console.log('updated');
+            router.push({path:'/tasks'});
         });
     }
 
@@ -49,7 +55,9 @@ import { getComments, addComment, Comment } from "../models/comment";
             text: commentText.value,
             isReply:isReply
         }
-        addComment(comment);
+        addComment(comment).then(res=>{
+            router.push({path:'/tasks'});
+        });
     }
     
 </script>
@@ -91,10 +99,32 @@ import { getComments, addComment, Comment } from "../models/comment";
             <button class="button is-primary btn-success">Update Task</button>
         </form>
         <hr />
-        <form class="form mb-5" @submit.prevent="createComment(false)">
+        <div class="my-3 py-3">
+            <h3>Comments</h3>
+        </div>
+        <div v-for="c in comments" class="my-3 py-3">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-title">
+                        {{c?.userHandel}}
+                    </div>
+                    <div class="card-header-icon">
+                        <span class="icon">
+                            <i class="fas fa-user"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="content">
+                        {{c?.text}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form class="form my-3" @submit.prevent="createComment(false)">
             <div class="field form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" v-model="commentText"></textarea>
-                <label for="floatingTextarea2">Comments</label>
+                <label for="floatingTextarea2">Comment</label>
             </div>
             <button class="button is-primary is-light is-outlined">Add Comment</button>
         </form>
