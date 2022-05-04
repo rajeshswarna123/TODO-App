@@ -17,9 +17,6 @@ import LoginBadge from './LoginBadge.vue';
       </div>
       <div id="navbarExampleTransparentExample" class="navbar-menu">
         <div class="navbar-start">
-          <router-link class="navbar-item" to="/">
-            Home
-          </router-link>
           <router-link class="navbar-item" to="/tasks">
             Tasks
           </router-link>
