@@ -5,15 +5,19 @@ import { ref } from "vue-demi";
 import { useRoute } from "vue-router";
 import { useSession } from "../models/session";
 import { Task, usetasks } from "../models/task";
+import { getComments, addComment, Comment } from "../models/comment";
 
     const route = useRoute();
     const tasks = usetasks();
     const session = useSession();
     let task: Task;
-    const comment = ref('');
+    let comments: Comment[]=[];
+    let comment:Comment;
+    const commentText = ref("");
+    const taskId = route.params.id as string; 
 
     tasks.tasks.forEach(t => {
-        if (t._id === route.params.id) {
+        if (t._id === taskId) {
             t.dueDate = moment(t.dueDate).format('YYYY-MM-DD');
             task = t;
             console.log(task);
@@ -27,6 +31,10 @@ import { Task, usetasks } from "../models/task";
     }
     else
     userHandles.value = session.userHandles;
+
+    getComments(taskId).then(res => {
+        comments = res;
+    });
     
     
     function update(){
@@ -35,8 +43,13 @@ import { Task, usetasks } from "../models/task";
         });
     }
 
-    function addComment(){
-        tasks.addComment(task._id, comment.value);
+    function createComment(isReply: boolean){
+        comment={
+            taskId:task._id,
+            text: commentText.value,
+            isReply:isReply
+        }
+        addComment(comment);
     }
     
 </script>
@@ -78,9 +91,9 @@ import { Task, usetasks } from "../models/task";
             <button class="button is-primary btn-success">Update Task</button>
         </form>
         <hr />
-        <form class="form mb-5" @submit.prevent="addComment">
+        <form class="form mb-5" @submit.prevent="createComment(false)">
             <div class="field form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" v-model="comment"></textarea>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" v-model="commentText"></textarea>
                 <label for="floatingTextarea2">Comments</label>
             </div>
             <button class="button is-primary is-light is-outlined">Add Comment</button>
