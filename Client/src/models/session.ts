@@ -41,21 +41,9 @@ export const useSession = defineStore('session', {
             }
         },
 
-        // async Signup(newUser: users.User) {
-        //     const newUserId = Math.max(...users.list.map(_ => _.id)) + 1;
-        //     users.list.push({
-        //         email: newUser.email,
-        //         firstName: newUser.firstName,
-        //         lastName: newUser.lastName,
-        //         password: newUser.password,
-        //         handle: newUser.handle,
-        //         id: newUserId,
-        //         pic: '',
-        //     });
-
-        //     this.user = users.list.find(_ => _.id == newUserId) || null;
-        //     router.push('/tasks');
-        // },
+        async Signup(newUser: users.User) {
+            return await this.api("users/", newUser );
+        },
 
         Logout() {
             this.user = null;
