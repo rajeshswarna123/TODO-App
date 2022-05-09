@@ -25,6 +25,10 @@ export const usetasks = defineStore('tasks', {
             delete task?._id; delete task?.isOwned;
             return await this.session.api('tasks/' + taskId, task, 'PATCH')
         },
+        
+        async updateTaskStatus(taskId?: string,taskStatus?: boolean){
+            return await this.session.api('tasks/' + taskId, {isCompleted: taskStatus}, 'PATCH')
+        },
 
         async getTasks(){
             const tasks = await this.session.api('tasks/currentUserTasks');
@@ -41,7 +45,7 @@ export const usetasks = defineStore('tasks', {
             this.cTasks = tasks;
         },
 
-        async deleteTask(taskId: string){
+        async deleteTask(taskId?: string){
             return await this.session.api(`tasks/${taskId}`, null, 'DELETE');
         }
     }
