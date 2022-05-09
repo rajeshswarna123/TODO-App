@@ -26,14 +26,6 @@ export const usetasks = defineStore('tasks', {
             return await this.session.api('tasks/' + taskId, task, 'PATCH')
         },
 
-        // taskAssignement(taskId: number, userId: number){
-        //     this.tasks.forEach(_=>
-        //         {
-        //             if(_.id==taskId)
-        //                 _.assignedTo = userId
-        //         });
-        // },
-
         async getTasks(){
             const tasks = await this.session.api('tasks/currentUserTasks');
             this.tasks = tasks;
