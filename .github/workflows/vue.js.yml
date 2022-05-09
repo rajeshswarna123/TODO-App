@@ -31,7 +31,7 @@ jobs:
         VITE_API_URL: "https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com/api/" 
       run: |
           npm install
-          npx vue-tsc --noEmit && npx vite build --base=${{ matrix.host == 'github-pages' && '/2022-spring' || '' }}/
+          npx vue-tsc --noEmit && npx vite build --base=${{ matrix.host == 'github-pages' && '/TODO-App' || '' }}/
           npm run test --if-present
       working-directory: Client
 
