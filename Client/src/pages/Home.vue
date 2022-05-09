@@ -27,18 +27,6 @@ else
 
 const tasks = usetasks();
 tasks.getTasks()
-// if(session?.user?._id){
-//   if(!tasks.tasks || tasks.tasks.length === 0){
-//          tasks.getTasks()
-//   }
-// }
-//Show or hide based on path
-// const route = useRoute();
-// const path = computed(() =>route.path)
-
-// if(path.value === '/tasks'){
-  
-// }
 
 function submitForm(e){
   tasks.createTasks(Math.max(...tasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user.id)
