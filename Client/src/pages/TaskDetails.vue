@@ -65,8 +65,11 @@ import { UserHandel } from "../models/user";
 
 <template>
     <div>
-        <div class="my-3 py-3">
+        <div class="my-3 py-3 d-flex justify-content-between align-items-center">
             <h3>Task Details</h3>
+            <span class="icon" role="button">
+                <i class="fas fa-trash" style="color:red"></i>
+            </span>
         </div>
         <form class="form" @submit.prevent="update">
             <div class="field">
