@@ -60,6 +60,12 @@ import { UserHandel } from "../models/user";
             router.push({path:'/tasks'});
         });
     }
+
+    function deleteTask(){
+        tasks.deleteTask(task._id).then(()=>{
+            router.push({path:'/tasks'});
+        });
+    }
     
 </script>
 
@@ -67,7 +73,7 @@ import { UserHandel } from "../models/user";
     <div>
         <div class="my-3 py-3 d-flex justify-content-between align-items-center">
             <h3>Task Details</h3>
-            <span class="icon" role="button">
+            <span class="icon" role="button" @click="deleteTask()">
                 <i class="fas fa-trash" style="color:red"></i>
             </span>
         </div>
