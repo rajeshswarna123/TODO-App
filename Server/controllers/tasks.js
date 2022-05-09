@@ -56,7 +56,7 @@ app
     })
     .delete('/:id', requireAuth, (req, res, next) => {
         taskModel.remove(req.params.id)
-        .then(user => {
+        .then(task => {
             res.send({ success: true, errors: [], data: task });
         }).catch(next);
     })
