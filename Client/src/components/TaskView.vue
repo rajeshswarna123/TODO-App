@@ -15,11 +15,14 @@ import { ref } from 'vue-demi';
     function edit(){
         editIt.value = !editIt;
     }
+    function updateTaskStatus(){
+      tasks.updateTaskStatus(task._id, task.isCompleted);
+    }
 </script>
 <template>
     <tr :class="{'text-dec-line-through' : task.isCompleted==true}"
                     v-show="(currentTab=='All') || ((currentTab=='Current') && (!task.isCompleted)) || ((currentTab=='Completed') && task.isCompleted)">
-                      <td><input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=user?._id"></td>
+                      <td><input type="checkbox" class="checkbox" v-model="task.isCompleted" :disabled="task.assignedTo!=user?._id" @change="updateTaskStatus"></td>
                       <th v-show="!editIt">
                         <router-link class="navbar-item" :to="'/task/'+task._id">
                           {{task.title}}
