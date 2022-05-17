@@ -24,24 +24,24 @@ function submitForm(){
 </script>
 
 <template>
-    <form @submit.prevent="submitForm" class="columns">
-                  <div class="control has-icons-left column">
-                    <input class="input is-primary" type="text" placeholder="New Task" v-model="newTask">
+    <form @submit.prevent="submitForm" class="columns mb-4 mx-auto">
+                  <div class="control has-icons-left mx-2">
+                    <input class="input is-primary form-control" type="text" placeholder="New Task" v-model="newTask">
                     <span class="icon is-left">
                       <i class="fas fa-calendar-plus" aria-hidden="true"></i>
                     </span>
                   </div>
-                  <div>
-                    <input type="date" class="input" v-model="dueDate"/>
+                  <div class="mx-2">
+                    <input type="date" class="form-control" v-model="dueDate"/>
                      
                   </div>
-                  <div class="column">
-                    <select v-model="assignedTo" class="select">
+                  <div class="mx-2">
+                    <select v-model="assignedTo" class="form-select">
                       <option disabled selected>Assign to</option>
                       <option v-for="user in userHandles" :value="user._id">{{user.handle}}</option>
                     </select>
                   </div>
-                    <button  type="submit" class="button">Create</button>
+                    <button  type="submit" class="button mx-2">Create</button>
                   </form>
 </template>
 
