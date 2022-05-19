@@ -23,10 +23,10 @@ function submitForm(){
   allTasks.createTasks(Math.max(...allTasks.tasks.map(_=>_.id))+1, newTask.value, dueDate.value, assignedTo.value, session.user._id,false);
 }
 
-  const list =ref<Task[]>();
+  const list =ref<Task[]>([]);
   function getTasksByKeyword(event){
     allTasks.getTasksByKeyword(event.input).then(tasks=>{
-      list.value = tasks;
+      list.value = tasks ?? [];
     });
   }
 
