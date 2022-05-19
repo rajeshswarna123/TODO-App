@@ -47,7 +47,11 @@ export const usetasks = defineStore('tasks', {
 
         async deleteTask(taskId?: string){
             return await this.session.api(`tasks/${taskId}`, null, 'DELETE');
-        }
+        },
+
+        async getTasksByKeyword(keyword: string): Promise<Task[]> {
+            return await this.session.api(`tasks/search/${keyword}`);
+        },
     }
 })
 
