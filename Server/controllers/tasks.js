@@ -70,5 +70,11 @@ app
             res.send({ success: true, errors: [], data: x.insertedIds });
         }).catch(next);
     })
+    .get('/search/:title', requireAuth, (req, res, next) => {
+        taskModel.getTasksBySubString(req.user._id, req.params.title)
+        .then(tasks => {
+            res.send({ success: true, errors: [], data: tasks });
+        }).catch(next);
+    })
 
 module.exports = app;

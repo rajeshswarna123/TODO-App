@@ -81,6 +81,10 @@ module.exports = {
     },
     async getCurrentUserTasks(userId){
         return (await collection.find({ $or: [ { assignedTo: userId }, { isOwned: userId } ] }).toArray()).map(x=> ({...x }) );
+    },
+
+    async getTasksBySubString(userId, subString){
+        return (await collection.find({$and: [{$or: [ { assignedTo: userId }, { isOwned: userId } ]},{title: { $regex: subString, $options: 'i' }}]}).toArray()).map(x=> ({...x }) );
     }
 }
 
